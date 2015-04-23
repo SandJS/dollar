@@ -1,6 +1,6 @@
 {
   "name": "@whym/dollar",
-  "version": "1.0.7",
+  "version": "2.0.0",
   "description": "Utility Library",
   "main": "lib/index.js",
   "scripts": {
