@@ -87,6 +87,10 @@ var tests = {
   pluralize: {
     'should correctly pluralize': [
       {
+        args: [0, 'meter'],
+        expected: '0 meters'
+      },
+      {
         args: [1, 'meter'],
         expected: '1 meter'
       },
