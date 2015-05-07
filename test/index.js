@@ -106,6 +106,26 @@ var tests = {
       expected: 'asdf<br>\nasdf<br>\nasdf<br>\nasdf<br>\n<br>\n'
     }
   },
+  mkpath: {
+    'should make a valid path from two path strings': [
+      {
+        args: ['/root/', '/mypath'],
+        expected: '/root/mypath'
+      },
+      {
+        args: ['/root', '/mypath'],
+        expected: '/root/mypath'
+      },
+      {
+        args: ['/root/', 'mypath'],
+        expected: '/root/mypath'
+      },
+      {
+        args: ['/root/', 'mypath', 'asdf', 'fdsa'],
+        expected: '/root/mypath/asdf/fdsa'
+      }
+    ]
+  },
   snake2camel: {
     'should change snake case to camel case': {
       args: ['my_key_name'],
