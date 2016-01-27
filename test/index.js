@@ -1,5 +1,9 @@
+"use strict";
+
 /**
  * @author Adam Jaso <ajaso@pocketly.com>
+ * @author Kevin Smithson <ksmithson@sazze.com>
+ *
  * @copyright 2015 Pocketly
  */
 
@@ -210,6 +214,41 @@ var tests = {
       args: ['http://dev:8000/v2/health', [/asdf/, /\/v2\/health$/]],
       expected: true
     }
+  },
+
+  transgress: {
+    'should see non-enumerable properties': {
+      args: [(() => {
+        let obj = {};
+        obj.enumerable = true;
+
+        Object.defineProperty(obj, 'nonEnumerable', {
+          enumerable: false,
+          value: true
+        });
+
+        return obj;
+      })()],
+      expected: {
+        enumerable: true,
+        nonEnumerable: true
+      }
+    }
+  },
+
+  extractIPv4: {
+    'should get the ip address from string': [
+      { args: ['the ip is at the end 1.2.3.4'], expected: '1.2.3.4'},
+      { args: ['1.2.3.4 at the beginning'], expected: '1.2.3.4'},
+      { args: ['in the middle 1.2.3.4 with 2.2.3.5 ip addresses'], expected: '1.2.3.4'}
+    ]
+  },
+
+  formatCCLast4: {
+    'should format cc': [
+      { args: ['amex', '1234'], expected: 'XXXX XXXXXX X1234'},
+      { args: ['visa', '1234'], expected: 'XXXX XXXX XXXX 1234'}
+    ]
   }
 };
 
