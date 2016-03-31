@@ -215,7 +215,7 @@ var tests = {
       expected: true
     }
   },
-
+  
   transgress: {
     'should see non-enumerable properties': {
       args: [(() => {
@@ -249,6 +249,23 @@ var tests = {
       { args: ['amex', '1234'], expected: 'XXXX XXXXXX X1234'},
       { args: ['visa', '1234'], expected: 'XXXX XXXX XXXX 1234'}
     ]
+  },
+  isNumericMap: {
+    'should match an object with all numeric keys': {
+      args: [{1: 'abc', 2: 'def', '3': 'ghi'}],
+      expected: true
+    },
+    'may match an object with any non numeric keys for a fast check': [{
+      args: [{1: '1', 'abc': 2, 3: 3}, true],
+      expected: true
+    }, {
+      args: [{'abc': 1, '2': 2, 3: '3'}, true],
+      expected: true
+    }],
+    'should not match an object with any non numeric keys for a non fast check': {
+      args: [{'abc': 1, '2': 2, 3: '3'}, false],
+      expected: false
+    }
   }
 };
 
