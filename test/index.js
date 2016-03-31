@@ -218,7 +218,7 @@ var tests = {
   
   transgress: {
     'should see non-enumerable properties': {
-      args: [(() => {
+      args: [(function() {
         let obj = {};
         obj.enumerable = true;
 
